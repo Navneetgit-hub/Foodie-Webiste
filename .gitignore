@@ -1,0 +1,10 @@
+# Dependency directories
+node_modules/
+
+# Build directories
+.parcel-cache/
+dist/
+
+# Other files to ignore
+.DS_Store
+*.log
