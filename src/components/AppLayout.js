@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import * as ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom/client';
 
 import ResCardContainer from './ResCardContainer'
 import SearchBar from './SearchBar';
@@ -13,7 +13,6 @@ const AppLayout = () => {
     }, [])
 
     const getSearchedData = (data) => {
-        console.log("after getting data",data)
         if(data.length>0){
             const searchedData = restaurants.filter((obj)=> {
                 return obj?.info?.name?.toLowerCase().includes(data.toLowerCase())

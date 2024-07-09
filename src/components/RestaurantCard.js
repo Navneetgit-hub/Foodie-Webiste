@@ -26,7 +26,6 @@ const RestaurantCard = (props) => {
 }
 
 export const Subscribed = (RestaurantCard) => {
-    console.log("REndereddd")
     return (props) => {
         return (<div className=''>
             <label className='absolute bg-rose-500 text-white z-10 p-2 mt-4 rounded-lg pr-6'>

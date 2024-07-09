@@ -1,27 +1,38 @@
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { restaurantImage } from "../../utils/constants";
 
 const Menucategory = (props) => {
-
     const { title , itemCards } = props?.props?.card?.card;
     const [menuFlag, setMenuFlag] = useState(false);
 
     const handleMenuFlag = () => {
-        setMenuFlag(!menuFlag);
+        props?.handleMenuIndex(props?.menuIndex)
+        if(props?.showMenu) {
+            setMenuFlag(!menuFlag);
+        }
     }
+
+    useEffect(() => {
+        if(props?.showMenu) {
+            setMenuFlag(!menuFlag)
+        } else {
+            if(menuFlag === true && props?.showMenu === false) {
+                setMenuFlag(!menuFlag)  
+            }
+        }
+    }, [props?.showMenu])
 
     return (
         <div>
             <div className="flex flex-col justify-center w-3/5 m-auto">
-                <div className="flex cursor-pointer justify-between items-center w-full p-3 mt-10 bg-rose-400 rounded text-white" onClick={handleMenuFlag}>
+                <div className="flex cursor-pointer justify-between items-center w-full p-3 mt-10 bg-rose-400 rounded font-montserrat text-white" onClick={handleMenuFlag}>
                     <span>{title}</span>
                     <span>{!menuFlag ? <AiOutlineDown /> : <AiOutlineUp />}</span>
-                    {console.log("During Render", menuFlag)}
                 </div>
                 {
                     menuFlag && (
-                        <div className="bg-gray-200 text-black rounded-lg">
+                        <div className=" text-black rounded-lg font-montserrat">
                             {
                                 itemCards?.map((obj, index)=> 
                                     (
@@ -35,7 +46,7 @@ const Menucategory = (props) => {
                                         </div>    
                                         <div className="w-2/12 relative">
                                             <img className="h-28 w-32" alt="Food Image" src={`${restaurantImage}${obj?.card?.info?.imageId}`} />
-                                            <button className="bg-white text-rose-400 p-2 rounded w-16 font-bold absolute top-0 mx-8 mt-[85px]">Add</button>
+                                            <button className="bg-white text-rose-400 p-2 shadow-sm shadow-rose-400/40 rounded w-16 font-bold absolute top-0 mx-8 mt-[85px]">Add</button>
                                         </div>
                                     </div>    
                                 ))

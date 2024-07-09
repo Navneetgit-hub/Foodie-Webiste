@@ -3,7 +3,6 @@ import { AiOutlineSearch } from "react-icons/ai";
 const SearchBar = (props) => {
 
     const OnSearchText = (value) => {
-        console.log(value)
         props.onSearch(value)
     }
 

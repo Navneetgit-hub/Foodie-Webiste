@@ -38,7 +38,7 @@ const ResCardContainer = (props) => {
             </div>
             <div className="grid grid-cols-4 pt-14 gap-6">
                 {filteredData.map((object, index) => {
-                    return <div className="transform transition-transform hover:scale-90">
+                    return <div key={index} className="transform transition-transform hover:scale-90">
                         <SubscribedRestaurant key={index} props={object} />
                     </div>
                 })}
