@@ -1,16 +1,23 @@
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import React, { useState, useEffect } from 'react';
 import { restaurantImage } from "../../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../utils/cartSlice";
 
 const Menucategory = (props) => {
     const { title , itemCards } = props?.props?.card?.card;
     const [menuFlag, setMenuFlag] = useState(false);
+    const dispatch = useDispatch()
 
     const handleMenuFlag = () => {
         props?.handleMenuIndex(props?.menuIndex)
         if(props?.showMenu) {
             setMenuFlag(!menuFlag);
         }
+    }
+
+    const handleAddItems = (item) => {
+        dispatch(addItem(item))
     }
 
     useEffect(() => {
@@ -46,7 +53,7 @@ const Menucategory = (props) => {
                                         </div>    
                                         <div className="w-2/12 relative">
                                             <img className="h-28 w-32" alt="Food Image" src={`${restaurantImage}${obj?.card?.info?.imageId}`} />
-                                            <button className="bg-white text-rose-400 p-2 shadow-sm shadow-rose-400/40 rounded w-16 font-bold absolute top-0 mx-8 mt-[85px]">Add</button>
+                                            <button className="bg-white text-rose-400 p-2 shadow-sm shadow-rose-400/40 rounded w-16 font-bold absolute top-0 mx-8 mt-[85px]" onClick={()=> handleAddItems(obj)}>Add</button>
                                         </div>
                                     </div>    
                                 ))

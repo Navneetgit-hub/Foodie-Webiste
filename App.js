@@ -10,6 +10,9 @@ import Header from './src/components/Header';
 import About from './src/components/About';
 import CardDetails from "./src/components/CardDetails";
 import UserContext from './utils/UserContext';
+import { Provider } from 'react-redux';
+import appStore from './utils/appstore';
+import Cart from './src/components/Cart';
 
 const App = () => {
 
@@ -17,10 +20,12 @@ const App = () => {
 
     return (
         <>
-            <UserContext.Provider value={{firstName:firstName}}>
-                <Header />
-            </UserContext.Provider>
-            <Outlet />
+            <Provider store={appStore}>
+                <UserContext.Provider value={{firstName:firstName}}>
+                    <Header />
+                </UserContext.Provider>
+                <Outlet />
+            </Provider>
         </>
     )
 }
@@ -41,6 +46,10 @@ const appRouter = createBrowserRouter([
             {
                 path: '/restaurantDetails/:id',
                 element: <CardDetails />
+            },
+            {
+                path: '/cart',
+                element: <Cart />
             }
         ]
     }
